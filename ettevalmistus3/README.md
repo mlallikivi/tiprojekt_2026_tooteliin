@@ -20,13 +20,15 @@ Erinevalt eelmisest ülesandest ei salvesta me pilte enam kindla ajavahemiku tag
 
 ## 3. Analüüs ja esitamine
 
-1.  **Graafik:** Programm peab genereerima töö lõpus faili `liikumise_graafik.png`, mis kuvab measure_change väljundid üle aja. Analüüsi seda graafik.
-    *   Kas liikumise "tõusud" on selgelt eristatavad?
-    *   Kas sinu valitud lävend (`MOTION_THRESHOLD`) on sobiv või peaks seda muutma?
-2.  **Taktituvastus:** loe kokku, mitu korda ületas graafik lävendit. Kas see ühtib videos nähtud taktide arvuga?
-3.  **Jõudlus:** Kui kaua võttis aega piltide võrdlemine? Kas seda saaks teha reaalajas 30 kaadrit sekundis?
+1.  **Graafik:** Programm peab genereerima töö lõpus faili `liikumise_graafik.png`, mis kuvab measure_change väljundid üle aja. Analüüsi seda graafikut.
+    *   Q1: Kas liikumise "tõusud" on selgelt eristatavad?
+    *   Q2: Kas sinu valitud lävend (`MOTION_THRESHOLD`) on sobiv või peaks seda muutma?
+2.  **Taktituvastus:** loe kokku, mitu korda ületas graafik lävendit. 
+    *   Q3: Kas see ühtib videos nähtud taktide arvuga?
+3.  **Jõudlus:** 
+    *   Q4: Kui kaua võttis aega piltide võrdlemine? Kas seda saaks teha reaalajas 30 kaadrit sekundis?
 
 ### Esitamine
-Esita täidetud `RTSP_liikumine.py` fail ja genereeritud graafik koos lühikese selgitusega oma tähelepanekute kohta.
+Esita kaks faili: 1) `RTSP_liikumine.py` ja 2) dokumendifail (doc/PDF), milles on genereeritud graafik ja vastused küsimustele Q1-Q4.
 
 Edu!
