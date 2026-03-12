@@ -5,24 +5,34 @@ import numpy as np
 import matplotlib.pyplot as plt
 import threading
 
+
 class RTSPStreamReader:
     def __init__(self, url):
         self.cap = cv2.VideoCapture(url)
         self.ret = False
         self.frame = None
         self.running = True
-        threading.Thread(target=self._update, daemon=True).start()
+        self.lock = threading.Lock()
+        self.thread = threading.Thread(target=self._update, daemon=True)
+        self.thread.start()
 
     def _update(self):
         while self.running:
-            self.ret, self.frame = self.cap.read()
-            if not self.ret: self.running = False
+            ret, frame = self.cap.read()
+            if not self.running: break
+            with self.lock:
+                self.ret = ret
+                self.frame = frame
+            if not ret: break
 
     def read(self):
-        return self.ret, self.frame
+        with self.lock:
+            if self.frame is None: return self.ret, None
+            return self.ret, self.frame.copy()
 
     def stop(self):
         self.running = False
+        self.thread.join(timeout=1.0)
         self.cap.release()
 
 """
