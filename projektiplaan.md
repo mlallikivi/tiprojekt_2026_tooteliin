@@ -94,21 +94,24 @@ Fookus: Tehisintellekti rakendamise süsteemi komponentide ja disaini kirjeldami
 ### 🟢 4.1 Komponentide valik ja koostöö
 Millist tüüpi tehisintellekti komponente on vaja rakenduses kasutada? Kas on vaja ka komponente, mis ei sisalda tehisintellekti? Kas komponendid on eraldiseisvad või sõltuvad üksteisest (keerulisem agentsem disan)?
 
-> **Komponendid:** > 1. Liikumise tuvastamine (Optical flow, mitte-AI).
+> **Komponendid:** > 1. Takti tuvastamine, muutuse tuvastamise kaudu (pikslite mean absolute difference).
 > 2. Toote klassifitseerimine (AI - kas on õige toode).
 > 3. Sildi detekteerimine (AI - asukoht ja olemasolu).
 > 4. Teksti ja triipkoodi lugemine (OCR süsteem).
-> Komponendid töötavad jadamisi: tuvastus -> lõikamine -> klassifitseerimine -> OCR.
+> Komponendid töötavad jadamisi: taktituvastus -> btriipkood > ROI lõikamine -> OCR ehk kuupäev, siltide olemasolu tuvastamine, toote välimuse alusel klassifitseerimine.
 
 ### 🟢 4.2 Tehisintellekti lahenduste valik
 Milliseid mudeleid on plaanis kasutada? Kas kasutada valmis teenust (API) või arendada/majutada mudelid ise?
 
-> Plaanis on kasutada lokaalselt majutatud mudeleid (nt YOLO versioonid objektituvastuseks), et tagada reaalajas töökiirus ja andmete turvalisus.
+> Plaanis on kasutada lokaalselt majutatud mudeleid, et tagada reaalajas töökiirus ja andmete turvalisus.
+* Sildituvastus: DINOv2-small. Teeb pildist vektori. 372 arvu. Sarnase sisuga pildid on selles vektorite ruumis sarnaste vektoritega kujutatud. Kui videovoost tuleva pildiala vektor on näidisega sarnane, siis ütleme, et silt on olemas. 
+* Kuupäevatuvastus: me oleme välja lõiganud ala, kus kuupäev peaks olema. Saadame oma 4 kuupäeva-ala mingisse OCR mudelisse. Peab olema kiire!
+* Tootetuvastus: pildiala DINOv2-ga enkoodida. Iga toote kohta kogume 10 + näidet = 10 vektorit. Treenime lineaarse mudeli, mis eristaks 5 klassi (4 toodet + empty), sisendiks on vektorid. 
 
 ### 🟢 4.3 Kuidas hinnata rakenduse headust?
 Kuidas rakenduse arenduse käigus hinnata rakenduse headust?
 
-> Testandmetel põhinev täpsus, saagis (mitu % toodetest suudetakse edukalt analüüsida) ning valehäirete osakaal.
+> Testandmetel põhinev täpsus, saagis (mitu % toodetest suudetakse edukalt analüüsida) ning valehäirete osakaal iga mooduli jaoks eraldi.
 
 ### 🟢 4.4 Rakenduse arendus
 Milliste sammude abil on plaanis/on võimalik rakendust järk-järgult parandada (viibadisain, erinevte mudelite testimine jne)?
