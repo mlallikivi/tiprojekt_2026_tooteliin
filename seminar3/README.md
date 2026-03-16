@@ -12,13 +12,6 @@ Selle harjutuse eesmärk on õppida tundma **Dynamsoft Barcode Reader SDK**-d. K
     *   Loo tsükkel üle leitud elementide (`get_items()`).
     *   Prindi välja failinimi, aeg, leitud koodide arv ja sisu.
 
-## Küsimused analüüsiks
-*   Kas programm leidis koodid kõigilt piltidelt kus need esinevad?
-*   Kas esines valelugemisi (misreading)?
-*   Mitu millisekundit võtab keskmiselt ühe pildi töötlemine?
-
-
-
 
 # Ülesanne 2: Tooteinfo ja säilivusaeg
 
