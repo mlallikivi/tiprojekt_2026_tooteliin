@@ -1,4 +1,4 @@
-# Kodutöö: Süsteemi integratsioon ja analüüs
+# Ettevalmistus: Triipkoodi tuvastuse lisamine ja tulemuste analüüs
 
 Sinu ülesanne on ühendada taktituvastus (Task 2) ja triipkoodi lugemine (Seminar 3) üheks terviklikuks süsteemiks.
 
