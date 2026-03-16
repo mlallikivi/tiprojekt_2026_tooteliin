@@ -3,7 +3,7 @@
 Sinu ülesanne on ühendada taktituvastus (Seminar 2) ja triipkoodi lugemine (Seminar 3) üheks terviklikuks süsteemiks.
 
 ## Ülesande sisu
-1. Tee koopia failist `RTSP_liikumine.py`.
+1. Tee koopia failist `RTSP_liikumine.py` (enda oma eelmisest kodutööst või kui see ei tööta, siis näidisest siin kaustas).
 2. Süsteem peab toimima kahe rohelise ekraani vahelisel ajal, reageerima liikumisele, ootama 2.5 sekundit, võtma pildi ja sellel tuvastama triipkoodi ja selle kaudu toote info.
 3. Terminalis peab iga takti kohta ilmuma:
     *   Sekundite arv video algusest (pärast rohelise ekraani lõppu - vajalik taktide võrdlemiseks märgendatud andmetega).
