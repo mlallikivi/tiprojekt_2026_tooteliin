@@ -1,6 +1,6 @@
 # Ettevalmistus: Triipkoodi tuvastuse lisamine ja tulemuste analüüs
 
-Sinu ülesanne on ühendada taktituvastus (Task 2) ja triipkoodi lugemine (Seminar 3) üheks terviklikuks süsteemiks.
+Sinu ülesanne on ühendada taktituvastus (Seminar 2) ja triipkoodi lugemine (Seminar 3) üheks terviklikuks süsteemiks.
 
 ## Ülesande sisu
 1. Tee koopia failist `RTSP_liikumine.py`.
