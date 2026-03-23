@@ -10,8 +10,6 @@ Enne alustamist veendu, et sul on vajalikud teegid paigaldatud.
 # Aktiveeri oma conda keskkond
 conda activate YOURENV
 
-# Paigalda vajalikud teegid
-pip install opencv-python numpy pillow
 
 # EasyOCR
 pip install easyocr
@@ -21,10 +19,12 @@ pip install easyocr
 # nt. pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 (CUDA 11.8)
 # CPU versioon:
 pip install torch torchvision torchaudio
-# 1. Install the dependencies available on PyPI 
+# Install the dependencies available on PyPI 
 pip install timm einops 
-# 2. Install strhub directly from the source code on GitHub 
-pip install "git+https://github.com/baudm/parseq.git"
+# IMPORTANT: WE REMOVED THIS LINE, WE DON'T NEED THIS, IF YOU HAVE IT THEN UNINSTALL, OTHERWISE IT CAUSES PROBLEMS
+# pip install "git+https://github.com/baudm/parseq.git"
+# TO UNINSTALL DO: pip uninstall strhub
+
 
 # PaddleOCR (paddlex)
 # PaddleX on ehitatud PaddlePaddle peale.
@@ -34,6 +34,10 @@ pip install paddlex
 
 # OpenRouter (OpenAI-ühilduv API)
 pip install openai
+pip install pytorch-lightning
+pip install nltk
+pip install opencv-contrib-python
+pip install pypdfium2
 ```
 
 **Andmete struktuur:**
