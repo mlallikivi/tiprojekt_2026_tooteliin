@@ -21,8 +21,10 @@ pip install easyocr
 # nt. pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 (CUDA 11.8)
 # CPU versioon:
 pip install torch torchvision torchaudio
-# 1. Install the dependencies available on PyPI pip install timm einops 
-# 2. Install strhub directly from the source code on GitHub pip install "git+https://github.com/baudm/parseq.git"
+# 1. Install the dependencies available on PyPI 
+pip install timm einops 
+# 2. Install strhub directly from the source code on GitHub 
+pip install "git+https://github.com/baudm/parseq.git"
 
 # PaddleOCR (paddlex)
 # PaddleX on ehitatud PaddlePaddle peale.
