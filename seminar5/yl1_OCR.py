@@ -10,7 +10,6 @@ from typing import List
 import easyocr
 import torch
 from PIL import Image
-from strhub.data.module import SceneTextDataModule
 from helpers import get_formatted_date
 
 
@@ -27,12 +26,19 @@ parseq_model = torch.hub.load('baudm/parseq', 'parseq', pretrained=True).eval()
 device = torch.device("cpu") # Määra seade selgesõnaliselt CPU-le
 parseq_model = parseq_model.to(device) # Liiguta mudel CPU-le 
 print(f"PARSeq mudel töötab seadmel: {device}")
-parseq_img_transform = SceneTextDataModule.get_transform(parseq_model.hparams.img_size)
+import torchvision.transforms as T
+parseq_img_transform = T.Compose(
+            [
+                T.Resize(parseq_model.hparams.img_size, T.InterpolationMode.BICUBIC),
+                T.ToTensor(),
+                T.Normalize(0.5, 0.5),
+            ]
+        )
 
 # 3. PaddleOCR Model
 import paddlex as pdx
 # Näide seadistamisest skriptis (ei pruugi olla efektiivne kõigi PaddlePaddle komponentide jaoks):
-os.environ['OMP_NUM_THREADS'] = "1" # Määra kõikidele saadaolevatele CPU tuumadele
+os.environ['OMP_NUM_THREADS'] = "8" # Määra kõikidele saadaolevatele CPU tuumadele
 #os.environ['MKL_NUM_THREADS'] = '8'
 #os.environ['KMP_AFFINITY'] = 'granularity=fine,compact,1,0' # Inteli CPU-de jaoks, kui MKL-i kasutatakse
 paddle_model = pdx.create_model("PP-OCRv5_server_rec") # proovi, mis juhtub mobiiliversiooniga
@@ -41,7 +47,7 @@ paddle_model = pdx.create_model("PP-OCRv5_server_rec") # proovi, mis juhtub mobi
 
 # --- OCR Mudeli Valik ---
 # Vali, millist OCR-mudelit selleks käivituseks kasutada: "easyocr", "parseq" või "paddleocr"
-OCR_MODEL_CHOICE = "paddleocr" # <--- MUUDA SEDA MUDELITE VAHETAMISEKS
+OCR_MODEL_CHOICE = "parseq" # <--- MUUDA SEDA MUDELITE VAHETAMISEKS
 BATCH_SIZE = 4 # Piltide arv, mida töödelda ühes partiis
 
 
