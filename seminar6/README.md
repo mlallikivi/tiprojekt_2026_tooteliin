@@ -1,4 +1,4 @@
-# Reaalajas kuupäevatuvastuse ja OCR-mudelite integreerimine
+# 1. Reaalajas kuupäevatuvastuse ja OCR-mudelite integreerimine
 
 Eesmärk on integreerida optilise märgituvastuse (OCR) mudel reaalajas RTSP videovoo töötlemise süsteemi. Süsteem tuvastab konveieril liikuvad tooted, lõikab neist välja lisaks teistele aladele ka kuupäeva alad ja proovib tuvastada "parim enne" kuupäevad.
 
@@ -8,7 +8,7 @@ Helpers.py failis on implementeeritud kõik OCR lahendused, mida kasutasime. Sam
 
 `RTSP_with_date.py` failis defineeritakse millist tuvastamise varianti kasutatakse ning adaptiivselt luuakse vastav tuvastusmudeli objekt ja kutsustakse õiget funktsiooni välja. See fail haldab ka vastuste kuvamist ja statistika kogumist.
 
-## Ülesanne: Lahenduse testimine ja analüüs
+## Lahenduse testimine ja analüüs
 
 Testi `RTSP_with_date.py` lahendusi ja analüüsi tulemusi.
 
@@ -23,7 +23,7 @@ Testi skripti kolme erineva vlm'i variandiga (vlm_single, vlm_batch_independent,
 * Jäta meelde tuvastuse kvaliteet ning ka keskmine töötlusaeg kuupäevatuvastuseks.
 
 
-# Sildituvastuse esialgne versioon
+# 2. Sildituvastuse esialgne versioon
 
 Fail `sildid_MAE.py` sisaldab koodi, mis arvutab siltide vahelisi kauguseid. Esialgu on tegu lihtsalt koodiga, mis võtab ühe näidissildi, õiged sildid ja valed sildid ning arvutab nendel pikslitevahelise kauguse (MAE - mean absolute error) näidissildiga. Seejärel väljastab kood histogrammi, kus on näha, kas selle kaugusega oli võimalik eristada olemasolevaid ja puuduvaid silte.
 
