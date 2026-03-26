@@ -14,7 +14,7 @@ Testi `RTSP_with_date.py` lahendusi ja analüüsi tulemusi.
 
 **Testimine:**
 
-Testi skripti kolme erineva vlm'i variandiga (vlm_single, vlm_batch_independent, vlm_batch_consistent) ühel tootegrupil (vali nendest üks):
+* Testi skripti kolme erineva vlm'i variandiga (vlm_single, vlm_batch_independent, vlm_batch_consistent) ühel tootegrupil (vali nendest üks):
     * `rtsp://172.17.37.81:8554/rulaad`
     * `rtsp://172.17.37.81:8554/kalkun`
     * `rtsp://172.17.37.81:8554/veis`
