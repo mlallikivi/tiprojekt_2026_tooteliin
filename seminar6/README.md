@@ -1,10 +1,10 @@
-# Reaalajas kuupäevatuvastus ja OCR-mudelite integreerimine
+# Reaalajas kuupäevatuvastuse ja OCR-mudelite integreerimine
 
-Eesmärk on integreerida valitud optilise märgituvastuse (OCR) mudel reaalajas RTSP videovoo töötlemise süsteemi. Süsteem tuvastab konveieril liikuvad tooted, lõikab neist välja kuupäeva alad ja proovib tuvastada "parim enne" kuupäevad. Lõpuks analüüsime lahenduse jõudlust ja arutame võimalikke parendusi.
+Eesmärk on integreerida optilise märgituvastuse (OCR) mudel reaalajas RTSP videovoo töötlemise süsteemi. Süsteem tuvastab konveieril liikuvad tooted, lõikab neist välja lisaks teistele aladele ka kuupäeva alad ja proovib tuvastada "parim enne" kuupäevad.
 
 ## Tutvu failidega: `RTSP_with_date.py` ja `helpers.py`
 
-Helpers.py failis on implementeeritud kõik OCR lahendused, mida kasutasime. Samuti uued kasutusviisid VLMi jaoks. Vaata neid põhjalikult, loe prompte.
+Helpers.py failis on implementeeritud kõik OCR lahendused, mida kasutasime. Samuti uued kasutusviisid VLMi jaoks (openrouter'i kaudu). Vaata need läbi, loe ka prompte.
 
 `RTSP_with_date.py` failis defineeritakse millist tuvastamise varianti kasutatakse ning adaptiivselt luuakse vastav tuvastusmudeli objekt ja kutsustakse õiget funktsiooni välja. See fail haldab ka vastuste kuvamist ja statistika kogumist.
 
@@ -13,29 +13,18 @@ Helpers.py failis on implementeeritud kõik OCR lahendused, mida kasutasime. Sam
 Testi `RTSP_with_date.py` lahendusi ja analüüsi tulemusi.
 
 **Testimine:**
-    *   Käivita skript iga nelja RTSP voo jaoks:
-        *   `rtsp://172.17.37.81:8554/rulaad`
-        *   `rtsp://172.17.37.81:8554/kalkun`
-        *   `rtsp://172.17.37.81:8554/veis`
-        *   `rtsp://172.17.37.81:8554/salami`
-    *   Muuda `STREAM_URL` vastavalt iga testi jaoks.
-    *   Lase skriptil töötada piisavalt kaua, et koguda statistikat (nt kuni rohelise ekraani teistkordse ilmumiseni).
+
+Testi skripti kolme erineva vlm'i variandiga (vlm_single, vlm_batch_independent, vlm_batch_consistent) ühel tootegrupil (vali nendest üks):
+    * `rtsp://172.17.37.81:8554/rulaad`
+    * `rtsp://172.17.37.81:8554/kalkun`
+    * `rtsp://172.17.37.81:8554/veis`
+    * `rtsp://172.17.37.81:8554/salami`
+* Lase skriptil töötada piisavalt kaua, et koguda statistikat (nt kuni rohelise ekraani teistkordse ilmumiseni).
+* Jäta meelde tuvastuse kvaliteet ning ka keskmine töötlusaeg kuupäevatuvastuseks.
 
 
+# Sildituvastuse esialgne versioon
 
-## Arutelu
+Fail `sildid_MAE.py` sisaldab koodi, mis arvutab siltide vahelisi kauguseid. Esialgu on tegu lihtsalt koodiga, mis võtab ühe näidissildi, õiged sildid ja valed sildid ning arvutab nendel pikslitevahelise kauguse (MAE - mean absolute error) näidissildiga. Seejärel väljastab kood histogrammi, kus on näha, kas selle kaugusega oli võimalik eristada olemasolevaid ja puuduvaid silte.
 
-1.  **Mudeli valik ja optimeerimine:**
-    *   Millise OCR-mudeli valiksid sina?
-
-2.  **Häire strateegia ("Alert"):**
-    *   Kuidas defineeriksid "alerti" ehk millal peaks süsteem andma häire, et toote kuupäev on vale?
-    *   Arvesta oma strateegia väljatöötamisel järgmiste teguritega:
-        *   **OCR-i täpsus:** Mida nägid oma testides erinevate mudelite täpsuse kohta? Kui usaldusväärne on üksik tuvastus?
-        *   **Liini töötamise loogika:** Kas sama toodet on võimalik mitu korda kontrollida? Kas on aega mitme pildi analüüsiks?
-        *   **Äriline eesmärk:** Kui kriitiline on vale kuupäev (nt toiduohutus vs. lihtsalt vale info)? Mis on valesti tuvastamise hind?
-    *   Paku välja konkreetne strateegia
-
-3.  **Töötluskiirus:**
-    *   Kas sinu lahenduse töötluskiirus (vaata "Keskmine kogu takti töötlemise aeg") on piisav reaalajas kasutamiseks, eeldades 1 takt iga 7 sekundi järel?
-
+Sinu ülesandeks on jooksutada koodi erinevate toodete peal, erinevate siltide peal (label1 - alumine silt, label2 - ülemine silt) ning muuta ka pildi suuruse muutmise faktorit ning analüüsida tulemusi. Kas saame eristada sellisel viisil olemasolevaid ja puuduvaid silte?
