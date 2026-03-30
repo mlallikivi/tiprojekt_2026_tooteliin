@@ -26,7 +26,7 @@ from helpers import (
 )
 
 # --- KONFIGURATSIOON ---
-STREAM_URL = "rtsp://172.17.37.81:8554/salami"
+STREAM_URL = "rtsp://172.17.37.81:8554/rulaad"
 MOTION_THRESHOLD = 15.0
 CAPTURE_DELAY = 2.5
 MONITOR_LOOP_SLEEP_SECONDS = 0.05
