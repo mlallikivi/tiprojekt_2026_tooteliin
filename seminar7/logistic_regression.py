@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
@@ -13,8 +14,9 @@ from transformers import AutoImageProcessor, AutoModel
 PRODUCTS = ["empty", "kalkun", "rulaad", "salami", "veis"]
 MODEL_NAME = "facebook/dinov2-small"
 BASE_DIR = Path(__file__).resolve().parent
-template_count = 20
+template_count = 30
 batch_size = 16
+model_path = BASE_DIR / f"logistic_regression_templates{template_count}.joblib"
 
 # Kui GPU on olemas, kasutame seda. Muidu tootame CPU-l.
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -71,8 +73,10 @@ train_paths, train_labels, test_paths = load_paths_and_split()
 train_features = np.array(create_embeddings(train_paths))
 
 # Opetame vektoresituste peal logistilise regressiooni mudeli.
-classifier = LogisticRegression(max_iter=2000,C=5.0)
+classifier = LogisticRegression(max_iter=2000, C=5.0)
 classifier.fit(train_features, train_labels)
+joblib.dump(classifier, model_path)
+print(f"Salvestasin mudeli faili: {model_path}")
 
 # Hindame mudelit testpiltidel ja prindime tulemused.
 correct_percentages = []
